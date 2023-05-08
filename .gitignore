@@ -1,7 +1,15 @@
 .vscode/
 Version.h
-CMakeFiles
+CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake
 cpp_cache
 Makefile
+
+# Catch2
+generated-includes/
+*.cmake
+DartConfiguration.tcl
+_deps/
+Testing/
+tests
