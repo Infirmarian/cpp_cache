@@ -13,3 +13,5 @@ DartConfiguration.tcl
 _deps/
 Testing/
 tests
+
+!src/tests
