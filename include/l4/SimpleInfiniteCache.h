@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cache/ICache.h"
+#include "l4/ICache.h"
 
 #include <mutex>
 #include <stdexcept>

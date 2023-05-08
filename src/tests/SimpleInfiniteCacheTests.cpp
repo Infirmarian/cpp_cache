@@ -1,5 +1,5 @@
-#include <cache/SimpleInfiniteCache.h>
 #include <catch2/catch_test_macros.hpp>
+#include <l4/SimpleInfiniteCache.h>
 
 TEST_CASE("SimpleCache.Set")
 {
