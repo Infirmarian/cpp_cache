@@ -75,7 +75,7 @@ public:
       _Evict();
     }
     _useHistory.emplace_back(key);
-    _cache.emplace(key, std::make_tuple(std::prev(_useHistory.end()), value));
+    _cache.emplace(key, std::make_pair(std::prev(_useHistory.end()), value));
   }
 
   [[nodiscard]] std::optional<Value> TryGet(const Key &key) const override
