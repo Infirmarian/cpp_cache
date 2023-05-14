@@ -23,30 +23,29 @@ public:
   }
   [[nodiscard]] std::size_t GetSize() const override
   {
-    std::lock_guard<std::mutex> l{_mtx};
+    std::scoped_lock l{_mtx};
     return _cache.size();
   }
   void Set(const Key &key, const Value &value) override
   {
-    std::lock_guard<std::mutex> l{_mtx};
+    std::scoped_lock l{_mtx};
     _cache.emplace(key, value);
   }
 
-  [[nodiscard]] bool TryGet(const Key &key, Value &value) const override
+  [[nodiscard]] std::optional<Value> TryGet(const Key &key) const override
   {
-    std::lock_guard<std::mutex> l{_mtx};
+    std::scoped_lock l{_mtx};
     auto it = _cache.find(key);
     if (it == _cache.end())
     {
-      return false;
+      return std::nullopt;
     }
-    value = it->second;
-    return true;
+    return it->second;
   }
 
   [[nodiscard]] Value Get(const Key &key) const override
   {
-    std::lock_guard<std::mutex> l{_mtx};
+    std::scoped_lock l{_mtx};
     auto it = _cache.find(key);
     if (it == _cache.end())
     {
@@ -56,17 +55,17 @@ public:
   }
   [[nodiscard]] bool IsCached(const Key &key) const override
   {
-    std::lock_guard<std::mutex> l{_mtx};
+    std::scoped_lock l{_mtx};
     return _cache.find(key) != _cache.end();
   }
   void Clear() override
   {
-    std::lock_guard<std::mutex> l{_mtx};
+    std::scoped_lock l{_mtx};
     _cache.clear();
   }
   bool Delete(const Key &key) override
   {
-    std::lock_guard<std::mutex> l{_mtx};
+    std::scoped_lock l{_mtx};
     return _cache.erase(key);
   }
 

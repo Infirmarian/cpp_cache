@@ -16,9 +16,9 @@ public:
   [[nodiscard]] std::size_t GetSize() const override { return 0; }
   void Set(const Key &key, const Value &value) override {}
 
-  [[nodiscard]] bool TryGet(const Key &key, Value &value) const override
+  [[nodiscard]] std::optional<Value> TryGet(const Key &key) const override
   {
-    return false;
+    return std::nullopt;
   }
 
   [[nodiscard]] Value Get(const Key &key) const override
